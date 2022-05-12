@@ -46,7 +46,7 @@ while select != ("p", "t"):
 
         with TelegramClient(StringSession(), API_KEY, API_HASH) as client:
             session_string = client.session.save()
-            saved_messages_template = "Telethon session" + template.format(session_string)
+            saved_messages_template = f"Telethon session{template.format(session_string)}"
             print("\nGenerating String Session...\n")
             client.send_message("me", saved_messages_template, parse_mode="html")
             time.sleep(1)
@@ -58,16 +58,17 @@ while select != ("p", "t"):
         time.sleep(1)
         print(tutor)
         with Client(
-        "UserBot", 
-        api_id=int(input("Enter API ID: ")),
-        api_hash=input("Enter API HASH: ")) as pyrogram:
-            saved_messages_template = "Pyrogram session" + template.format(pyrogram.export_session_string())
-            print("\nGenerating String session...\n")           
+                "UserBot", 
+                api_id=int(input("Enter API ID: ")),
+                api_hash=input("Enter API HASH: ")) as pyrogram:
+            saved_messages_template = f"Pyrogram session{template.format(pyrogram.export_session_string())}"
+
+            print("\nGenerating String session...\n")
             pyrogram.send_message("me", saved_messages_template, parse_mode="html")
-            time.sleep(1) 
+            time.sleep(1)
             print("Your STRING_SESSION value have been sent to your Telegram Saved Messages")
         break
-    
+
     else:
         print("\nPlease only select P or T\n")
         time.sleep(1.5)
